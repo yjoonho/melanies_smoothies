@@ -60,6 +60,9 @@ ingredients_list = st.multiselect(
 # st.dataframe(data=my_dataframe, use_container_width=True)
 
 #
+# move the line
+import requests
+
 if ingredients_list:
     st.write(ingredients_list)
     st.text(ingredients_list)
@@ -71,6 +74,8 @@ if ingredients_list:
     for fruit_chosen in ingredients_list:
         # ingredients_string += fruit_chosen
         ingredients_string += fruit_chosen + ' '
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+        sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
         # The += operator means "add this to what is already in the variable" so each time the FOR Loop is repeated
     st.write(ingredients_string)
     
@@ -90,11 +95,11 @@ if ingredients_list:
         st.success('Your Smoothie is ordered!', icon="✅")
 
 # New Section to display smoothiefroot nutrition information
-import requests
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-st.text(smoothiefroot_response)
-st.text(smoothiefroot_response.json())
-sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+# import requests
+# smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+# st.text(smoothiefroot_response)
+# st.text(smoothiefroot_response.json())
+# sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
 
 
